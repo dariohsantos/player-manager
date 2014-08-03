@@ -1,0 +1,36 @@
+@font-face {
+	font-family: 'view-modes';
+	src:url('fonts/view-modes.eot?-jd1un8');
+	src:url('fonts/view-modes.eot?#iefix-jd1un8') format('embedded-opentype'),
+		url('fonts/view-modes.woff?-jd1un8') format('woff'),
+		url('fonts/view-modes.ttf?-jd1un8') format('truetype'),
+		url('fonts/view-modes.svg?-jd1un8#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="view-mode-"], [class*=" view-mode-"] {
+	font-family: 'view-modes';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;	
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.view-mode-split4:before {
+	content: "\e600";
+}
+.view-mode-split2:before {
+	content: "\e601";
+}
+.view-mode-picture:before {
+	content: "\e602";
+}
+.view-mode-full:before {
+	content: "\e603";
+}

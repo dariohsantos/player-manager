@@ -1,0 +1,31 @@
+<html>
+	<head>		
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/jwplayer.js"></script>
+		<script type="text/javascript" src="js/handlebars.js"></script>
+		<script type="text/javascript" src="js/require.js"></script>
+		<script type="text/javascript" src="js/Config.js"></script>
+		<script type="text/javascript" src="js/init.js"></script>
+		<!-- mi clave
+		<script type="text/javascript">jwplayer.key="c619yhvyPVrx++OzZIggqhj5No9NMuWVIdMrRA==";</script>
+		-->
+		<script type="text/javascript">jwplayer.key="XyKDz1KFv2iEARyRM3oiWyoVrkFdkJldRpaH93FuHJE=";</script>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body>
+		<div class="video-container">			
+			
+		</div>		        
+		
+
+		<script id="player-template" type="text/x-handlebars-template">
+			<div id="video">	
+				<video id="fallback-video" src="{{video}}" controls autoplay="true">
+		        	<p class="warning">Your browser does not support HTML5 video.</p>
+		      	</video>			
+			</div>
+		</script>
+	</body>
+</html>
+
+

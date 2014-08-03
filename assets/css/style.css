@@ -1,0 +1,106 @@
+header{
+	background-color: #222222;	
+}
+
+.navbar{
+	border: none;
+	background-color:  #febe20;	
+	border-radius: 0;
+}
+
+.navbar-default .navbar-nav > li > a{
+	color: #000;
+	font-weight: bold;
+}
+
+.nav-tabs{
+	margin-bottom: 20px;
+}
+
+.gray-lighter{
+	color: #eee;
+}
+
+.orange{
+	color: #febe20;
+}
+
+.red{
+	color: red;
+}
+
+.green{
+	color: green;
+}
+
+.black{
+	color: black;
+}
+
+.padding-base-vertical{
+	padding: 6px 0;
+}
+
+.page-header{
+	border-bottom: 2px solid #FDB813;
+}
+
+.action-button{
+	margin: 0 5px;
+}
+
+.login{
+	margin-top: 100px;
+}
+
+.multiselect{
+	width: 100%;
+}
+
+.multiselect .dropdown-menu{
+	width: 100%;
+}
+
+.multiselect.dropdown-toggle{
+	text-align: left;
+}
+
+.graphic-box{	
+	background-color:#CCC;
+	cursor: move;	
+}
+
+.graphic-box.active{
+	background-color: transparent;
+}
+
+.graphic-layout{
+	position: relative;
+	background-color:#000;	
+}
+
+.graphic-position-bar{
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+}
+
+.graphic-position-name{
+	background-color: #CCC;
+	font-size: 16px;
+	font-weight: bold;
+	
+	padding: 3px 5px;
+}
+
+.remove-button{
+	color: red;
+}
+
+.remove-graphic-position{
+	padding: 3px;
+}
+
+.thumbnail > img.height-4{
+	height: 128px;
+}
