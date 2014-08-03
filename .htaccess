@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteBase /player-manager/
+
+RewriteCond $1 !^(index\.php|assets|players|robots\.txt)
+RewriteRule ^(.*)$ index.php/$1 [L]
