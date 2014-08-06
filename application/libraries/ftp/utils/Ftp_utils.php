@@ -2,14 +2,14 @@
 
 class Ftp_utils {
 
-	function deleteRecursive($directory){	    
-	    if( !(@ftp_rmdir($handle, $directory) || @ftp_delete($handle, $directory)) ){	        
-	        $filelist = @ftp_nlist($handle, $directory);	        
-	        foreach($filelist as $file){
-	            recursiveDelete($file);
-	        }	      
-	        recursiveDelete($directory);
-	    }
+	function deleteRecursive($conn_id, $directory){		
+		 if (@ftp_delete ($conn_id, $directory) === false) {	 	
+		    if ($children = ftp_nlist ($conn_id, $directory)) {	    	
+		      foreach ($children as $p)
+		        $this->deleteRecursive ($conn_id,  $p);
+		    }
+	    	ftp_rmdir ($conn_id, $directory);
+  		}
 	}
 
 

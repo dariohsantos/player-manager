@@ -124,4 +124,19 @@ abstract class Ftp_service {
     	return $size;
 	}
 
+	protected function getFilesList($path){		
+		$size = 0;
+	    $ignore = array('.','..','cgi-bin','.DS_Store');
+	    $files = scandir($path);
+ 	    $list = array();
+	    foreach($files as $t) {
+	        if(in_array($t, $ignore)) continue;
+	        array_push($list, rtrim($path, '/') . '/' . $t);
+	        if (is_dir(rtrim($path, '/') . '/' . $t)) {
+	        	$list = array_merge($list, $this->getFilesList(rtrim($path, '/') . '/' . $t));	            
+	        }  
+	    }
+    	return $list;
+	}
+
 }

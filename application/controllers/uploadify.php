@@ -54,7 +54,9 @@ class Uploadify extends CI_Controller
            $imageLocation = $this->moveFile($moveFileParams );
 
             $response['file_id'] = $id;
-            $response['image_location'] = $imageLocation;
+            $response['image_location'] =  base_url() . $imageLocation;
+
+
             echo json_encode($response);                  
         }
 

@@ -40,11 +40,12 @@ abstract Class Player_model extends DB_model{
   public function finalizeUpload($playerId){
     $player = $this->get($playerId);
     $data = array(     
-      'upload_state' => FINISHED
+      'upload_state' => FINISHED,
+      'last_uploaded_version' => $player['version']
     );
 
     $this->db->where('id', $playerId);
-    $this->db->update($this->getDbEntityName(), $data);    
+    $this->db->update($this->getDbEntityName(), $data);        
   }
 
  

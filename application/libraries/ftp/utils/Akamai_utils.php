@@ -10,6 +10,7 @@ class Akamai_utils {
 	protected $akamaiUser;
 	protected $akamaiPass;
 	protected $akamaiBaseDir;
+	protected $localBaseDir;
 	protected $akamaiBaseUrl;
 
 
@@ -20,17 +21,25 @@ class Akamai_utils {
 		$this->akamaiPurgeEndpoint = $this->ci->config->item('akamai_purge_endpoint');
 		$this->akamaiUser = $this->ci->config->item('akamai_purge_user');
 		$this->akamaiPass = $this->ci->config->item('akamai_purge_password');		
+		$this->localBaseDir = $this->ci->config->item('local_base_dir');	
 		$this->akamaiBaseDir = $this->ci->config->item('akamai_base_dir');	
-		$this->akamaiBaseUrl = $this->ci->config->item('akamai_base_url');			
-	}
+		$this->akamaiBaseUrl = $this->ci->config->item('akamai_base_url');	
+		$this->ci->load->library('ftp/utils/Ftp_utils', array(), 'ftp_utils');			
+	}	
 
+	public function remove($conn_id, $path){
+		
+		$ftpPath = $this->processPathToFtp($path);
+		$this->ci->ftp_utils->deleteRecursive($conn_id, $ftpPath);
+		
+	}
 
 	public function purgeCache($filesToClear){	
 		
 		$curlOpts = array(CURLOPT_USERPWD => $this->akamaiUser . ":" . $this->akamaiPass);		
 		$headers = array("Content-Type:application/json");		
 		$options = array();
-		$filesToClear = $this->processFilesPaths($filesToClear);
+		$filesToClear = $this->processFilesPathsToPurge($filesToClear);
 		$options['objects'] = $filesToClear;	
 		$ccuResponse = $this->curlRequest($this->akamaiPurgeEndpoint, $options, $headers, $curlOpts);		
 		$response = json_decode($ccuResponse);
@@ -39,12 +48,24 @@ class Akamai_utils {
 
 	}
 
-	private function processFilesPaths($filePaths){
+	private function processFilesPathsToPurge($filePaths){
 		$result = array();
 		foreach ($filePaths as $filePath) {
-			$result[] = str_replace($this->akamaiBaseDir, $this->akamaiBaseUrl, $filePath);
+			$result[] = str_replace($this->localBaseDir, $this->akamaiBaseUrl, $filePath);
 		}
 		return $result;
+	}
+
+	private function processPathsToFtp($filePaths){
+		$result = array();
+		foreach ($filePaths as $filePath) {
+			$result[] = $this->processFilePathToFtp($filePath);
+		}
+		return $result;
+	}
+
+	private function processPathToFtp($filePath){
+		return str_replace($this->localBaseDir, $this->akamaiBaseDir, $filePath);
 	}
 
 	private function processAkamaiResponse($response){		
