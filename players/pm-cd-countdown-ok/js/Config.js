@@ -1,0 +1,1 @@
+config = {"title1":"titulo principal","title2":"titulo secundario","date":"05 Aug 2014 08:32:00","releaseUrl":"http:\/\/link.theplatform.com\/s\/H2PcKC\/ITbmUXoYSp03?feed=LIVE_DxTV-TKN_LIVE","localTimeUrl":"http:\/\/localhost\/player-manager\/players\/countdown-base\/date.php","size":{"height":"400","width":"300"}}
