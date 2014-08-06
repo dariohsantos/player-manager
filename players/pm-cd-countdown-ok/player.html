@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xmlns:og="http://ogp.me/ns#" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>player</title>
+		<link rel="alternate" href="http://feed.theplatform.com/f/H2PcKC/EYG1ho_sKX2x?form=rss&linkUrl=http%3A%2F%2Fplayer.theplatform.com%2Fp%2FH2PcKC%2FBELOHwFuRRq_%2Fselect%2F%7BreleasePid%7D" type="application/rss+xml" />
+		<meta name="tp:PreferredRuntimes" content="flash, HTML5" />
+		<meta name="tp:initialize" content="false" />
+		<meta name="tp:EnableExternalController" content="true" />
+		
+		<script type="text/javascript" src="../pdk/web/pdk/tpPdk.js"></script>
+		<script src="js/Config.js"></script>
+		<script type="text/javascript" src="js/handlebars.js"></script>
+		<script src="js/jquery-latest.js"></script>
+		<script src="js/jquery.fittext.js"></script>
+		<script src="js/countdown.js"></script>
+		<script src="js/controller.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="css/countdown.css" />		
+	</head>
+	<body>
+
+		<div class="tpContainer">
+		</div>
+
+		<script id="player-template" type="text/x-handlebars-template">
+			<div class="tpPlayer" id="player" 
+					tp:allowFullScreen="true"
+					tp:skinUrl="http://pdk.theplatform.com/pdk/skins/glass/glass.json"
+					tp:showNav="false"
+					tp:allowRss="true"
+					tp:layoutUrl="../pdk/web/data/metaLayout_floatingControls.xml"
+					tp:emailServiceURL="http://player.theplatform.com/m/H2PcKC/BELOHwFuRRq_/select/{releasePid}"
+					tp:relatedItemsUrl="http://feed.theplatform.com/f/H2PcKC/EYG1ho_sKX2x?byRelatedReleasePid={releasePid}"
+					tp:allowLink="true"
+					tp:playerUrl="http://player.theplatform.com/p/H2PcKC/BELOHwFuRRq_/select/{releasePid}"
+					tp:altEmbeddedPlayerHtml="&lt;embed src=&quot;http://player.theplatform.com/p/H2PcKC/BELOHwFuRRq_/swf/select/{releasePid}&quot; width=&quot;640&quot; height=&quot;512&quot; type=&quot;application/x-shockwave-flash&quot; allowFullScreen=&quot;true&quot; bgcolor=&quot;0x131313&quot;/&gt;"
+					tp:showFullTime="true"
+					tp:allowFullScreen="true"
+					tp:controlBackgroundColor="0x131313"
+					tp:backgroundColor="0x131313"
+					tp:controlFrameColor="0x555555"
+					tp:frameColor="0x555555"
+					tp:textBackgroundColor="0x131313"
+					tp:controlHighlightColor="0x242424"
+					tp:controlHoverColor="0xdddddd"
+					tp:loadProgressColor="0xbebebe"
+					tp:controlSelectedColor="0x2a80d6"
+					tp:playProgressColor="0x2a80d6"
+					tp:scrubberFrameColor="0x2a80d6"
+					tp:controlColor="0xbebebe"
+					tp:textColor="0xbebebe"
+					tp:scrubberColor="0xbebebe"
+					tp:scrubTrackColor="0xbebebe"
+					tp:pageBackgroundColor="0x131313"
+					tp:plugin1="type=reporting|url=http://livepassdl.conviva.com/thePlatform/ConvivaThePlatformPlugin_5_0_5.swf?customerId=c3.theplatform|customerId=c3.TP-Latinstock|priority=1|cdnName=OTHER|serviceUrl=http%3A%2F%2Flivepass.conviva.com"
+					tp:plugin2="type=reporting|url=http://livepassdl.conviva.com/thePlatform/ConvivaThePlatformPlugin.js|customerId=c3.TP-Latinstock|priority=1|cdnName=OTHER|serviceUrl=http%3A%2F%2Flivepass.conviva.com"
+					tp:plugin3="type=content|url=../pdk/web/pdk/swf/akamaiHD.swf|fallback=switch%3Dhttp|bufferProfile=livestable|priority=1"
+					tp:plugin4="type=content|url=../pdk/web/pdk/js/plugins/akamaiHD.js|fallback=switch%3Dhttp|bufferProfile=livestable|priority=1">
+				<noscript class="tpError">To view this site, you need to have JavaScript enabled in your browser, and either the Flash Plugin or an HTML5-Video enabled browser. Download <a href="http://get.adobe.com/flashplayer/" target="_black">the latest Flash player</a> and try again.</noscript>
+			</div>			
+		</script>
+
+		<script id="timer-template" type="text/x-handlebars-template">
+			<div class="timer-area">
+				<h1 id="title" class="resize">{{title1}}</h1>
+				<h2 id="subtitle" class="resize">{{title2}}</h2>
+				<div id="countdown">
+					<div class="cont" >
+						<p class="days resize1">00</p>
+						<p class="resize2 timeRefDays">dias</p>
+					</div>
+					<div class="cont">
+						<p class="resize1 hours">00</p>
+						<p class="resize2 timeRefHours">horas</p>
+					</div>
+					<div class="cont">
+						<p class="resize1 minutes">00</p>
+						<p class="resize2 timeRefMinutes">minutos</p>
+					</div>
+					<div class="cont">
+						<p class="resize1 seconds">00</p>
+						<p class="resize2 timeRefSeconds">segundos</p>
+					</div>
+				</div>
+			</div>
+		</script>
+	</body>
+</html>
+
+
+
+
+
+

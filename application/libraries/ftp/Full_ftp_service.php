@@ -23,8 +23,18 @@ class Full_ftp_service extends Ftp_service{
 		return $this->getSourcePath($player) . '/versioned-data/version-' . $player['version'];
 	}
 
+	private function getPreviousSourceVersionFile($player){
+		$previousVersion = $player['last_uploaded_version'];
+		return $this->getSourcePath($player) . '/versioned-data/version-' . $previousVersion;
+	}
+
 	private function getDestVersionFile($player){
 		return $this->getDestPath($player) . '/versioned-data/version-' . $player['version'];
+	}
+
+	private function getPreviousSourceDataPath($player){
+		$previousVersion = $player['last_uploaded_version'];
+		return $this->getSourcePath($player) . '/versioned-data/' . $previousVersion;
 	}
 
 	private function getSourceDataPath($player){
@@ -35,39 +45,54 @@ class Full_ftp_service extends Ftp_service{
 		return $this->getDestPath($player) . '/versioned-data/' . $player['version'];
 	}
 
-	protected function update($player, $conn_id){		
-		$srcDataPath = $this->getSourceDataPath($player);
-		$destDataPath = $this->getDestDataPath($player);
-		$srcFile =  $this->getConfigFileSoure($player);
-		$dstFile = $this->getConfigFileDest($player);
-
-		$srcVersionFile =  $this->getSourceVersionFile($player);
-		$dstVersionFile = $this->getDestVersionFile($player);
-
-		$dataFilesCount = $this->getFileCount($srcDataPath);
-		$totalFilesCount = $dataFilesCount + 3; // Config + Refresh + Version
-
-		$this->ci->player_model->initUpload($player['id'], $totalFilesCount);
-
-		ftp_put($conn_id, $dstFile, $srcFile, FTP_ASCII);
-		$this->ci->player_model->incrementCounter($player['id']);	
-
-		$uploadedFiles = $this->uploadRecursive($conn_id, $player, $srcDataPath, $destDataPath);					
-
-		ftp_put($conn_id, $dstVersionFile, $srcVersionFile, FTP_ASCII);
-		$this->ci->player_model->incrementCounter($player['id']);	
-
-		$purgeResult = $this->ci->akamai_utils->purgeCache($uploadedFiles);		
-		$this->ci->player_model->incrementCounter($player['id']);	
+	protected function update($player, $conn_id){	
+		$this->initUpload($player, $conn_id);
+		$this->updateVersionData($player, $conn_id);
+		$this->updateConfigFile($player, $conn_id);
+		$this->updateVersionFile($player, $conn_id);	
+		$this->purgeAkamai($player, $conn_id);
 		$this->ci->player_model->finalizeUpload($player['id']);
-		if($purgeResult){
-			$result['state'] = 'ok';
-			$result['akamaiRefreshTime'] = $purgeResult;
-		}
-		else{
-			$result['state'] = 'error';	
-		}
+		$result['state'] = 'ok';	
 		return $result;
 	}	
 
+	protected function initUpload($player, $conn_id){		
+		$srcDataPath = $this->getSourceDataPath($player);		
+		$dataFilesCount = $this->getFileCount($srcDataPath);
+		$totalFilesCount = $dataFilesCount + 3; // Config + Refresh + Version
+		$this->ci->player_model->initUpload($player['id'], $totalFilesCount);
+	}
+
+	protected function updateVersionData($player, $conn_id){
+		$srcDataPath = $this->getSourceDataPath($player);
+		$destDataPath = $this->getDestDataPath($player);
+		$this->uploadRecursive($conn_id, $player, $srcDataPath, $destDataPath);					
+	}
+
+	protected function updateConfigFile($player, $conn_id){
+		$srcFile =  $this->getConfigFileSoure($player);
+		$dstFile = $this->getConfigFileDest($player);
+		ftp_put($conn_id, $dstFile, $srcFile, FTP_BINARY);		
+		$this->ci->player_model->incrementCounter($player['id']);	
+	}
+
+	protected function updateVersionFile($player, $conn_id){
+		$srcVersionFile =  $this->getSourceVersionFile($player);
+		$dstVersionFile = $this->getDestVersionFile($player);
+		ftp_put($conn_id, $dstVersionFile, $srcVersionFile, FTP_BINARY);
+		$this->ci->player_model->incrementCounter($player['id']);	
+	}
+
+	protected function purgeAkamai($player, $conn_id){		
+		$previousDir = $this->getPreviousSourceDataPath($player);
+		$previousFileVersion = $this->getPreviousSourceVersionFile($player);
+		$this->ci->akamai_utils->remove($conn_id, $previousDir);
+		$this->ci->akamai_utils->remove($conn_id, $previousFileVersion);
+
+		$pathsToPurge = $this->getFilesList($previousDir);
+		array_push($pathsToPurge, $previousFileVersion);	
+		array_push($pathsToPurge, $this->getConfigFileSoure($player));		
+		$this->ci->akamai_utils->purgeCache($pathsToPurge);		
+		$this->ci->player_model->incrementCounter($player['id']);			
+	}
 }

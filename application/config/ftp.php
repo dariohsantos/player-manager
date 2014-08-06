@@ -3,6 +3,7 @@
 
 $config['akamai_server'] = 'lsdlive.upload.akamai.com';
 $config['akamai_base_dir'] = '/279877/player';
+$config['local_base_dir'] = FCPATH . 'players';
 $config['akamai_user'] = 'lsdlive';
 $config['akamai_pass'] = '20LSDlive14';
 $config['akamai_base_url'] = 'http://latinstatic.edgesuite.net/player';

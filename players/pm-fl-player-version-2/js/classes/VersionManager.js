@@ -50,11 +50,14 @@ var VersionManager = function(actualVersion) {
 	}
 
 	this.refreshVersion = function(lastVerifiedVersion, lastVersion){
+		console.log("REFRESH INIT");
 		if(lastVerifiedVersion > 0 && this.actualVersion != lastVerifiedVersion){		   			   
+			console.log("REFRESH UPDATE");
 	   		this.actualVersion = lastVerifiedVersion;
 	   		amplify.publish("configVersionUpdate", {version : this.actualVersion});		   	
 		}
 		if(lastVerifiedVersion == 0){
+			console.log("REFRESH RAISE");
 			// Theres is no version in range, raise de version for the next check
 		   	this.actualVersion = lastVersion;	
 		}
@@ -69,3 +72,4 @@ var VersionManager = function(actualVersion) {
 	this.init(parseInt(actualVersion));
 
 }
+
