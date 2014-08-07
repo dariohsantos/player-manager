@@ -19,7 +19,7 @@ rm .htaccess.dev
 echo "-> config files updated"
 
 echo "-> deleting cache"
-rm assets/cache/
+rm -rf assets/cache/
 mkdir assets/cache/
 echo "-> cache deleted"
 
