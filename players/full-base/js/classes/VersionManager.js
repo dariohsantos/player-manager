@@ -10,7 +10,7 @@ var VersionManager = function(actualVersion) {
 	this.init = function(actualVersion){		
 		this.actualVersion = actualVersion;
 		this.maxRetries = 1;
-		this.updateVersion(0)
+		amplify.publish("configVersionUpdate", {version : this.actualVersion});	
 		this.startVerifyTimer();
 	}
 
