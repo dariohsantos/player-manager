@@ -281,8 +281,8 @@ var filePositionChangeHandler = function(){
 		imageCopy.css("width","100%");
 		imageCopy.css("height","100%");
 		imageCopy.css("position","absolute");											
-		$(".graphic-box[name=" + selectedPosition + "]").addClass("active");
-		$(".graphic-box[name=" + selectedPosition + "] .image-container").append(imageCopy);			
+		$(".graphic-box['name=" + selectedPosition + "']").addClass("active");
+		$(".graphic-box['name=" + selectedPosition + "'] .image-container").append(imageCopy);			
 	}
 
 	this.setImageToPosition = function(currentSelect){

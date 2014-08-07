@@ -8,3 +8,4 @@ rm .htaccess.dev
 
 
 chmod -R 777 assets/cache/
+chmod -R 777 assets/uploads/
