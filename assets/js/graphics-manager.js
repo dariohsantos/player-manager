@@ -281,8 +281,8 @@ var filePositionChangeHandler = function(){
 		imageCopy.css("width","100%");
 		imageCopy.css("height","100%");
 		imageCopy.css("position","absolute");											
-		$(".graphic-box['name=" + selectedPosition + "']").addClass("active");
-		$(".graphic-box['name=" + selectedPosition + "'] .image-container").append(imageCopy);			
+		$(".graphic-box[name='" + selectedPosition + "']").addClass("active");
+		$(".graphic-box[name='" + selectedPosition + "'] .image-container").append(imageCopy);			
 	}
 
 	this.setImageToPosition = function(currentSelect){
@@ -296,10 +296,10 @@ var filePositionChangeHandler = function(){
 		var fileId = $(currentSelect).attr("for-file");
 		var otherSelects = $(".graphic-position-select").not("[for-file=" + fileId +"]");
 		otherSelects.each(function(){										
-			$(this).find("[value=" + selectedPosition +"]").attr("selected", false);
+			$(this).find("[value='" + selectedPosition +"']").attr("selected", false);
 		});	
 
-		$(".graphic_position_image_id[value=" + fileId + "]").val("");				
+		$(".graphic_position_image_id[value='" + fileId + "']").val("");				
 	}
 	this.init();
 }	
