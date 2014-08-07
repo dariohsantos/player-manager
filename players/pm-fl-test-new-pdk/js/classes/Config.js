@@ -1,1 +1,0 @@
-config = {"initialViewMode":"full","availableViewModes":["full","split2"],"showRightController":false,"size":{"height":"300","width":"500"},"feeds":[{"name":"feed1","url":"http:\/\/feed.theplatform.com\/f\/H2PcKC\/4fwE8ONjnu1_","init":true}]}
