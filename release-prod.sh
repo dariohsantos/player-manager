@@ -1,14 +1,14 @@
 
-echo "reseting git"
+echo "-> reseting git"
 git reset --hard
-echo "reset finished"
+echo "-> reset finished"
 
-echo "pulling changes"
+echo "-> pulling changes"
 git pull
-echo "changes pulled"
+echo "-> changes pulled"
 
 
-echo "updating config files"
+echo "-> updating config files"
 mv index.php index.dev.php
 sed '0,/development/s/development/production/' index.dev.php > index.php
 rm index.dev.php
@@ -16,10 +16,15 @@ rm index.dev.php
 mv .htaccess .htaccess.dev
 sed '/RewriteBase/d' .htaccess.dev > .htaccess
 rm .htaccess.dev
-echo "config files updated"
+echo "-> config files updated"
 
-echo "seting permissions in folders"
+echo "-> deleting cache"
+rm assets/cache/
+mkdir assets/cache/
+echo "-> cache deleted"
+
+echo "-> seting permissions in folders"
 chmod -R 777 assets/cache/
 chmod -R 777 assets/uploads/
 chmod -R 777 players/
-echo "set permisions finished"
+echo "-> set permisions finished"
