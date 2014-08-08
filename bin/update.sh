@@ -1,4 +1,3 @@
-
 echo "-> reseting git"
 git reset --hard
 echo "-> reset finished"
