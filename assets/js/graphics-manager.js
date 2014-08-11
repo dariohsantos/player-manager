@@ -134,19 +134,24 @@ var GraphicsManager = function(){
 
 	this.dragEvent = function(  ) {
 		var context = $(this).context;				
-		var name = $(context).attr("name");						
-	  	var relativeX = context.offsetLeft * 100 / 800;
-	  	var relativeY = context.offsetTop * 100 / 500;		  			
+		var name = $(context).attr("name");	
+		var layout = $('#graphic-layout');
+		var layoutHeight = layout.height();
+		var layoutWidth = layout.width();
+	  	var relativeX = context.offsetLeft * 100 / layoutWidth;
+	  	var relativeY = context.offsetTop * 100 / layoutHeight;		  			
 		$("input[name='graphic_position[" + name +"][x-position]']").val(relativeX);
 		$("input[name='graphic_position[" + name +"][y-position]']").val(relativeY);
 		}
 
 	this.sizeChangeEvent =	function( ) {
 		var context = $(this).context;				
-	  	var name = $(context).attr("name");		
-	  	var relativeWidth = context.offsetWidth * 100 / 800;
-	  	var relativeHeight = context.offsetHeight * 100 / 500;
-
+	  	var name = $(context).attr("name");	
+	  	var layout = $('#graphic-layout');  	
+	  	var layoutHeight = layout.height();
+		var layoutWidth = layout.width();	
+	  	var relativeWidth = context.offsetWidth * 100 / layoutHeight;
+	  	var relativeHeight = context.offsetHeight * 100 / layoutWidth;
 		$("input[name='graphic_position[" + name +"][width]']").val(relativeWidth);
 		$("input[name='graphic_position[" + name +"][height]']").val(relativeHeight);			
 	}		
