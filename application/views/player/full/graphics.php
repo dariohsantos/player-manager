@@ -44,9 +44,10 @@
 					<? $graphicPositions = @$player['graphic_positions']?$player['graphic_positions']:array(); ?>
 	          		<?php foreach ($graphicPositions as $graphicPositionIndex => $graphicPosition): ?>
 						<div class="graphic-box" id="graphic-position-<?=value(@$graphicPosition,'name')?>" name="<?=value(@$graphicPosition,'name')?>" style="width:<?=value(@$graphicPosition,'width')?>%;height:<?=value(@$graphicPosition,'height')?>%;left:<?=value(@$graphicPosition,'x-position')?>%;top:<?=value(@$graphicPosition,'y-position')?>%">						
+							<span class="label label-default position-label"><?=value(@$graphicPosition,'name')?></span>
 							<div class="graphic-position-bar">
-								<a href="#remove" class="remove-graphic-position remove-button pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-								<p class="graphic-position-name pull-left"><?=value(@$graphicPosition,'name')?></p>
+								<a href="#remove" class="remove-graphic-position remove-button pull-right"><span class="glyphicon glyphicon-remove"></span></a>								
+								
 							</div>
 							<div class="image-container">
 								

@@ -104,3 +104,8 @@ header{
 .thumbnail > img.height-4{
 	height: 128px;
 }
+
+.position-label{
+	margin-top: -16px;
+	position: absolute;
+}
