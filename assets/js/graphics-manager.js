@@ -75,8 +75,9 @@ var GraphicsManager = function(){
 
 	this.addGraphicEvent = function(event){
 		var manager = event.data.manager;
-
-		var context = {name: manager.name.val(), width: manager.width.val(), height: manager.height.val()};
+		var percWidth = manager.width.val() * 100 / manager.layout.width();
+		var percHeight = manager.height.val() * 100 / manager.layout.height();
+		var context = {name: manager.name.val(), width: percWidth, height: percHeight};
 		if(manager.validatePosition(context)){
 			var source   = $("#graphic-position-template").html();
 			var template = Handlebars.compile(source);
@@ -102,10 +103,11 @@ var GraphicsManager = function(){
 		this.height.val("");
 	}
 
-	this.validatePosition = function(context){
-		console.log(graphicsManager.graphicPositions);
-		if(context.width > 100 || context.width < 10 || context.height > 100 || context.height < 10){
-			modalManager.showModalMessage(messages.validation.graphicsPositionSize);
+	this.validatePosition = function(context){		
+		if(context.width > 100 || context.height > 100 ){
+			var message = messages.validation.graphicsPositionSize.replace(":width", graphicsManager.layout.width()).replace(":height", graphicsManager.layout.height());
+			
+			modalManager.showModalMessage(message);
 			return false;
 		}
 		if(graphicsManager.graphicPositions.indexOf(context.name) > -1){

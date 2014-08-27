@@ -1,2 +1,5 @@
 *players/pm-*
 *assets/uploads*
+.buildpath
+.project
+.settings/

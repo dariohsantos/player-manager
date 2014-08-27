@@ -13,13 +13,13 @@
 					<div class="col-lg-3">						
 						<div class="input-group">								
 							<input type="text" name="graphic-width" value="" class="form-control" placeholder="ancho..."/>
-							<div class="input-group-addon">%</div>
+							<div class="input-group-addon">px</div>
 						</div>						
 					</div>
 					<div class="col-lg-3">											
 						<div class="input-group">								
 							<input type="text" name="graphic-height" value="" class="form-control" placeholder="alto..."/>
-							<div class="input-group-addon">%</div>
+							<div class="input-group-addon">px</div>
 						</div>
 					</div>					
 					<div class="col-lg-3">											
